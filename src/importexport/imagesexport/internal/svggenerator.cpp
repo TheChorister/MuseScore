@@ -143,8 +143,13 @@ static QString getClass(const mu::engraving::EngravingItem* e)
     if (e == NULL) {
         return eName; // e should never be null, this is extra-cautious
     }
-    eName = e->typeName();
-
+    
+    eName = QString("%1_#%2_%3").arg(
+        e->typeName(),
+        QString(std::to_string(e->voice())),
+        e->playTick().ticks()
+    );
+    
     // Future sub-typing code goes here
 
     return eName;
