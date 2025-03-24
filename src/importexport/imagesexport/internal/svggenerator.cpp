@@ -146,8 +146,8 @@ static QString getClass(const mu::engraving::EngravingItem* e)
     
     eName = QString("%1_#%2_%3").arg(
         e->typeName(),
-        QString(std::to_string(e->voice())),
-        e->playTick().ticks()
+        QString::fromStdString(std::to_string(e->voice())),
+        QString::number(e->playTick().ticks(), 16)
     );
     
     // Future sub-typing code goes here
