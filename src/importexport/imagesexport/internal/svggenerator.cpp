@@ -144,11 +144,7 @@ static QString getClass(const mu::engraving::EngravingItem* e)
         return eName; // e should never be null, this is extra-cautious
     }
     
-    eName = QString("%1_#%2_%3").arg(
-        e->typeName(),
-        QString::fromStdString(std::to_string(e->voice())),
-        QString::number(e->playTick().ticks(), 16)
-    );
+    eName = e->typeName();
     
     // Future sub-typing code goes here
 
@@ -281,6 +277,9 @@ protected:
 #define SVG_CURVE    'C'
 
 #define SVG_CLASS    " class=\""
+
+#define SVG_DATA       " data-"
+#define SVG_ATTRIBUTE  "=\""
 
 #define SVG_ELEMENT_END  "/>"
 #define SVG_RPAREN_QUOTE ")\""
@@ -1190,6 +1189,8 @@ void SvgPaintEngine::updateState(const QPaintEngineState& s)
 
     // SVG class attribute, based on mu::engraving::ElementType
     stateStream << SVG_CLASS << getClass(_element) << SVG_QUOTE;
+    stateStream << SVG_DATA << "ticks" << SVG_ATTRIBUTE << QString::number(_element->playTick().ticks(), 10) << SVG_QUOTE;
+    stateStream << SVG_DATA << "voice" << SVG_ATTRIBUTE << QString::fromStdString(std::to_string(_element->voice()));
 
     // Brush and Pen attributes
     stateStream << qbrushToSvg(s.brush());
