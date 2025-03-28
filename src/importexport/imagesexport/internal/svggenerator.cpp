@@ -1187,12 +1187,12 @@ void SvgPaintEngine::updateState(const QPaintEngineState& s)
 
     // stateString = Attribute Settings
 
-    stateStream << SVG_ID << QString::fromStdString(_element->eid().toStdString()) << SVG_QUOTE;
+    stateStream << SVG_ID << _element->eid().toStdString() << SVG_QUOTE;
     // SVG class attribute, based on mu::engraving::ElementType
     stateStream << SVG_CLASS << getClass(_element) << SVG_QUOTE;
-    stateStream << SVG_DATA << "ticks" << SVG_ATTRIBUTE << QString::number(_element->playTick().ticks(), 10) << SVG_QUOTE;
-    stateStream << SVG_DATA << "voice" << SVG_ATTRIBUTE << QString::number(_element->voice(), 10) << SVG_QUOTE;
-    stateStream << SVG_DATA << "staff" << SVG_ATTRIBUTE << QString::number(_element->staffIdx(), 10) << SVG_QUOTE;
+    // stateStream << SVG_DATA << "ticks" << SVG_ATTRIBUTE << QString::number(_element->playTick().ticks(), 10) << SVG_QUOTE;
+    // stateStream << SVG_DATA << "voice" << SVG_ATTRIBUTE << QString::number(_element->voice(), 10) << SVG_QUOTE;
+    // stateStream << SVG_DATA << "staff" << SVG_ATTRIBUTE << QString::number(_element->staffIdx(), 10) << SVG_QUOTE;
 
     // Brush and Pen attributes
     stateStream << qbrushToSvg(s.brush());
