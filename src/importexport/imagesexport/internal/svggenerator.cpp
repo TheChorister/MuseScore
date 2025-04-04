@@ -1187,7 +1187,7 @@ void SvgPaintEngine::updateState(const QPaintEngineState& s)
 
     // stateString = Attribute Settings
 
-    stateStream << SVG_ID << _element->eid().toStdString() << SVG_QUOTE;
+    stateStream << SVG_ID << _element->eid() << SVG_QUOTE;
     // SVG class attribute, based on mu::engraving::ElementType
     stateStream << SVG_CLASS << getClass(_element) << SVG_QUOTE;
     // stateStream << SVG_DATA << "ticks" << SVG_ATTRIBUTE << QString::number(_element->playTick().ticks(), 10) << SVG_QUOTE;
